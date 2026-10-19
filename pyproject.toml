@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hai-zero-day"
+version = "1.0.0"
+description = "Matched-capacity one-class anomaly detection under HAI plant-version shift"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=1.26,<2",
+  "pandas>=2.2,<3",
+  "scipy>=1.13",
+  "scikit-learn>=1.5",
+  "matplotlib>=3.9",
+  "torch>=2.4",
+  "PyYAML>=6.0",
+  "faster-eTaPR==0.1.2",
+  "reportlab>=4.0",
+]
+
+[project.scripts]
+hai-download = "hai_zd.download:main"
+hai-prepare = "hai_zd.data:main"
+hai-train = "hai_zd.train:main"
+hai-evaluate = "hai_zd.evaluate:main"
+hai-report = "hai_zd.report:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
